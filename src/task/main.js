@@ -37,6 +37,7 @@ const MainApp = () => {
     return null;
   };
 
+  
   const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, index }) => {
     const RADIAN = Math.PI / 180;
     const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
@@ -44,7 +45,14 @@ const MainApp = () => {
     const y = cy + radius * Math.sin(-midAngle * RADIAN);
 
     return (
-      <text x={x} y={y} fill="black" textAnchor={x > cx ? 'start' : 'end'} dominantBaseline="central">
+      <text
+        x={x}
+        y={y}
+        fill="black"
+        textAnchor={x > cx ? 'start' : 'end'}
+        dominantBaseline="central"
+        transform={`rotate(-95, ${x}, ${y})`}
+      >
         {`${dataPie[index].value}%`}
       </text>
     );
@@ -76,7 +84,7 @@ const MainApp = () => {
             Sales vs Orders
             <img src='alert.png' alt='' width='25px' style={{ marginLeft: '10px' }} />
           </h3>
-          <LineChart width={600} height={400} data={dataLine}>
+          <LineChart width={650} height={400} data={dataLine}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
             <YAxis yAxisId="left" tickFormatter={formatYAxisLeft} />
@@ -101,28 +109,28 @@ const MainApp = () => {
             Portion of Sales 
             <img src='alert.png' alt='' width='25px' style={{ marginLeft: '10px' }} />
           </h3>
-          <div className='rotate'>
-          <PieChart width={360} height={360}>
-            <Pie
-              data={dataPie}
-              cx={200}
-              cy={200}
-              outerRadius={150}
-              fill="#8884d8"
-              dataKey="value"
-              label={renderCustomizedLabel}
-              labelLine={false} 
-            >
-              {dataPie.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-              ))}
-            </Pie>
-          </PieChart>
+          <div style={{ transform: 'rotate(95deg)', display: 'inline-block' }}>
+            <PieChart width={360} height={360}>
+              <Pie
+                data={dataPie}
+                cx={200}
+                cy={200}
+                outerRadius={150}
+                fill="#8884d8"
+                dataKey="value"
+                label={renderCustomizedLabel}
+                labelLine={false} 
+              >
+                {dataPie.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                ))}
+              </Pie>
+            </PieChart>
           </div>
           <div className='pie-text'>
-            <p>Total</p>
-           <h3>2659</h3>
-           </div>
+            <p style={{ textAlign: "center" }}>Total</p>
+            <h3 style={{ textAlign: "center" }}>2629</h3>
+          </div>
           <p>
             <img src='dot1.png' width={'20px'} alt="WooCommerce Store" /> WooCommerce Store 
             <img src='dot3.png' width={'20px'} alt="Shopify Store" /> Shopify Store
@@ -134,4 +142,3 @@ const MainApp = () => {
 };
 
 export default MainApp;
-
