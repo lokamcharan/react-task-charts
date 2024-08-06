@@ -80,7 +80,7 @@ const MainApp = () => {
       </div>
       <div className="charts">
         <div className="chart">
-          <h3 style={{ display: 'flex', alignItems: 'center' }}>
+          <h3 style={{ display: 'flex', alignItems: 'center',color:'#808080'}}>
             Sales vs Orders
             <img src='alert.png' alt='' width='25px' style={{ marginLeft: '10px' }} />
           </h3>
@@ -105,7 +105,7 @@ const MainApp = () => {
           </div>
         </div>
         <div className="chart">
-          <h3 style={{ display: 'flex', alignItems: 'center' }}>
+          <h3 style={{ display: 'flex', alignItems: 'center' ,color:'#808080'}}>
             Portion of Sales 
             <img src='alert.png' alt='' width='25px' style={{ marginLeft: '10px' }} />
           </h3>
