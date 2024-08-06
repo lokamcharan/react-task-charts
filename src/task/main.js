@@ -40,9 +40,9 @@ const MainApp = () => {
   const formatYAxisRight = (tick) => {
     const tickMap = {
       0: 0,
-      2: 1,
-      4: 2,
-      6: 3,
+      '-1': 1,
+      1: 1,
+      3: 3,
       8: 4,
     };
     return tickMap[tick] !== undefined ? tickMap[tick] : tick;
@@ -116,5 +116,3 @@ const MainApp = () => {
 };
 
 export default MainApp;
-
-
