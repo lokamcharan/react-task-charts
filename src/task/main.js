@@ -3,14 +3,13 @@ import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell } from 'recharts';
 import './main.css';
 
-// Data for Line Chart
 const dataLine = [
   { name: '6/30/2024 - 7/6/2024', orders: 4, sales: 1404, avgOrderValue: 351 },
   { name: '7/7/2024 - 7/13/2024', orders: 2, sales: 800, avgOrderValue: 400 },
   { name: '7/21/2024 - 7/27/2024', orders: 2, sales: 500, avgOrderValue: 250 },
 ];
 
-// Data for Pie Chart
+
 const dataPie = [
   { name: 'WooCommerce Store', value: 55.8 },
   { name: 'Shopify Store', value: 44.2 },
@@ -19,7 +18,7 @@ const dataPie = [
 const COLORS = ['#E56162', '#10E1E9'];
 
 const MainApp = () => {
-  // Custom Tooltip to show the averages
+  
   const customTooltip = ({ payload, label }) => {
     if (payload && payload.length) {
       const currentData = payload[0].payload;
@@ -77,7 +76,7 @@ const MainApp = () => {
             Sales vs Orders
             <img src='alert.png' alt='' width='25px' style={{ marginLeft: '10px' }} />
           </h3>
-          <LineChart width={750} height={400} data={dataLine}>
+          <LineChart width={600} height={400} data={dataLine}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
             <YAxis yAxisId="left" tickFormatter={formatYAxisLeft} />
@@ -102,6 +101,7 @@ const MainApp = () => {
             Portion of Sales 
             <img src='alert.png' alt='' width='25px' style={{ marginLeft: '10px' }} />
           </h3>
+          <div className='rotate'>
           <PieChart width={360} height={360}>
             <Pie
               data={dataPie}
@@ -118,9 +118,10 @@ const MainApp = () => {
               ))}
             </Pie>
           </PieChart>
+          </div>
           <div className='pie-text'>
             <p>Total</p>
-           <h3> 2529</h3>
+           <h3>2659</h3>
            </div>
           <p>
             <img src='dot1.png' width={'20px'} alt="WooCommerce Store" /> WooCommerce Store 
@@ -133,3 +134,4 @@ const MainApp = () => {
 };
 
 export default MainApp;
+
