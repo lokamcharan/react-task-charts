@@ -3,12 +3,14 @@ import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart, Pie, Cell } from 'recharts';
 import './main.css';
 
+// Data for Line Chart
 const dataLine = [
   { name: '6/30/2024 - 7/6/2024', orders: 4, sales: 1404, avgOrderValue: 351 },
   { name: '7/7/2024 - 7/13/2024', orders: 2, sales: 800, avgOrderValue: 400 },
   { name: '7/21/2024 - 7/27/2024', orders: 2, sales: 500, avgOrderValue: 250 },
 ];
 
+// Data for Pie Chart
 const dataPie = [
   { name: 'WooCommerce Store', value: 55.8 },
   { name: 'Shopify Store', value: 44.2 },
@@ -17,6 +19,25 @@ const dataPie = [
 const COLORS = ['#E56162', '#10E1E9'];
 
 const MainApp = () => {
+  // Custom Tooltip to show the averages
+  const customTooltip = ({ payload, label }) => {
+    if (payload && payload.length) {
+      const currentData = payload[0].payload;
+      return (
+        <div className="custom-tooltip">
+          <p>{label}</p>
+          {payload.map((entry, index) => (
+            <p key={index} style={{ color: entry.color }}>
+              {`${entry.name}: ${new Intl.NumberFormat('en').format(entry.value)}`}
+            </p>
+          ))}
+          <p style={{ color: '#8884d8' }}>Avg Order Value: {currentData.avgOrderValue}</p>
+        </div>
+      );
+    }
+    return null;
+  };
+
   const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, index }) => {
     const RADIAN = Math.PI / 180;
     const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
@@ -30,12 +51,9 @@ const MainApp = () => {
     );
   };
 
- 
   const formatYAxisLeft = (tick) => {
-    if (tick === 0) return '0k';
-    return tick >= 1000 ? `${(tick / 1000).toFixed(1)}k` : `${(tick / 1000).toFixed(1)}k`;
+    return tick >= 1000 ? `${(tick / 1000).toFixed(1)}k` : tick;
   };
-
 
   const formatYAxisRight = (tick) => {
     const tickMap = {
@@ -70,10 +88,9 @@ const MainApp = () => {
               align="center" 
               wrapperStyle={{ paddingBottom: 20 }}
             />
-            <Tooltip formatter={(value) => new Intl.NumberFormat('en').format(value)} />
+            <Tooltip content={customTooltip} />
             <Line yAxisId="right" type="monotone" dataKey="orders" stroke="#FF8042" dot={{ r: 6 }} />
             <Line yAxisId="left" type="monotone" dataKey="sales" stroke="#0088FE" dot={{ r: 6 }} />
-            {/* <Line yAxisId="left" type="monotone" dataKey="avgOrderValue" stroke="#82ca9d" dot={{ r: 6 }} /> */}
           </LineChart>
 
           <div className='date'>
