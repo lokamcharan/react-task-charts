@@ -84,7 +84,7 @@ const MainApp = () => {
             Sales vs Orders
             <img src='alert.png' alt='' width='25px' style={{ marginLeft: '10px' }} />
           </h3>
-          <LineChart width={650} height={400} data={dataLine}>
+          <LineChart width={700} height={400} data={dataLine}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis dataKey="name" />
             <YAxis yAxisId="left" tickFormatter={formatYAxisLeft} />
@@ -110,7 +110,7 @@ const MainApp = () => {
             <img src='alert.png' alt='' width='25px' style={{ marginLeft: '10px' }} />
           </h3>
           <div style={{ transform: 'rotate(95deg)', display: 'inline-block' }}>
-            <PieChart width={360} height={360}>
+            <PieChart width={380} height={360}>
               <Pie
                 data={dataPie}
                 cx={200}
@@ -131,10 +131,13 @@ const MainApp = () => {
             <p style={{ textAlign: "center" }}>Total</p>
             <h3 style={{ textAlign: "center" }}>2629</h3>
           </div>
+          <div className='dot'>
           <p>
             <img src='dot1.png' width={'20px'} alt="WooCommerce Store" /> WooCommerce Store 
             <img src='dot3.png' width={'20px'} alt="Shopify Store" /> Shopify Store
           </p>
+          </div>
+          
         </div>
       </div>
     </div>
