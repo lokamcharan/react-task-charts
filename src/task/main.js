@@ -4,9 +4,9 @@ import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, PieChart
 import './main.css';
 
 const dataLine = [
-  { name: '6/30/2024 - 7/6/2024', orders: 5, sales: 1404, avgOrderValue: 351 },
-  { name: '7/7/2024 - 7/13/2024', orders: 4, sales: 1200, avgOrderValue: 467 },
-  { name: '7/21/2024 - 7/27/2024', orders: 1, sales: 1000, avgOrderValue: 1000 },
+  { name: '6/30/2024 - 7/6/2024', orders: 4, sales: 1404, avgOrderValue: 351 },
+  { name: '7/7/2024 - 7/13/2024', orders: 2, sales: 800, avgOrderValue: 400 },
+  { name: '7/21/2024 - 7/27/2024', orders: 2, sales: 500, avgOrderValue: 250 },
 ];
 
 const dataPie = [
@@ -73,15 +73,19 @@ const MainApp = () => {
             <Tooltip formatter={(value) => new Intl.NumberFormat('en').format(value)} />
             <Line yAxisId="right" type="monotone" dataKey="orders" stroke="#FF8042" dot={{ r: 6 }} />
             <Line yAxisId="left" type="monotone" dataKey="sales" stroke="#0088FE" dot={{ r: 6 }} />
-            <Line yAxisId="left" type="monotone" dataKey="avgOrderValue" stroke="#82ca9d" dot={{ r: 6 }} />
+            {/* <Line yAxisId="left" type="monotone" dataKey="avgOrderValue" stroke="#82ca9d" dot={{ r: 6 }} /> */}
           </LineChart>
+
+          <div className='date'>
+            <p>6/30/2024 - 7/6/2024</p>
+          </div>
         </div>
         <div className="chart">
           <h3 style={{ display: 'flex', alignItems: 'center' }}>
             Portion of Sales 
             <img src='alert.png' alt='' width='25px' style={{ marginLeft: '10px' }} />
           </h3>
-          <PieChart width={360} height={400}>
+          <PieChart width={360} height={360}>
             <Pie
               data={dataPie}
               cx={200}
@@ -97,6 +101,10 @@ const MainApp = () => {
               ))}
             </Pie>
           </PieChart>
+          <div className='pie-text'>
+            <p>Total</p>
+           <h3> 2529</h3>
+           </div>
           <p>
             <img src='dot1.png' width={'20px'} alt="WooCommerce Store" /> WooCommerce Store 
             <img src='dot3.png' width={'20px'} alt="Shopify Store" /> Shopify Store
